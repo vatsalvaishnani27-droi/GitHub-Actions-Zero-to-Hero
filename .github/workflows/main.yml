@@ -1,0 +1,22 @@
+name: My First Python Action
+
+# 1. THE TRIGGER: Tell GitHub when to run this action
+on: [push] 
+
+# 2. THE JOB: Define the server environment
+jobs:
+  build:
+    runs-on: ubuntu-latest # This tells GitHub to spin up a free, temporary Ubuntu server
+
+    # 3. THE STEPS: What exactly should the server do?
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3 # This pulls your code from the repo onto the Ubuntu server
+
+      - name: Set up Python
+        uses: actions/setup-python@v4 # This installs Python on the server
+        with:
+          python-version: '3.9' # Specify the version you want to use
+
+      - name: Run my Python Code
+        run: python addition.py # This is the exact terminal command it will execute
